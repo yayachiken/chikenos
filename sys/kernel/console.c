@@ -61,7 +61,7 @@ void con_puts(const char *str)
 			return;
 		}
 
-		*cursorpos = (((*str)) | 0x0F00);
+		*cursorpos = (((*str)) | 0x0700);
 		str++;
 		cursorpos++;
 	}
