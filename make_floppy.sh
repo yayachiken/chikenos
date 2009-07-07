@@ -6,7 +6,7 @@
 mkdir /tmp/floppy
 echo "Mounting floppy image, root required..."
 sudo mount -o loop floppy.img /tmp/floppy/
-cp sys/kernel/kernel.bin /tmp/floppy/
+cp kernel.bin /tmp/floppy/
 mkdir /tmp/floppy/grub
 
 #

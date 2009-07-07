@@ -2,24 +2,23 @@
 # Makefile for ChikenOS
 #
 
+.PHONY: all clean
+
 all: floppy
 
-floppy: kernel
-	dd if=/dev/zero of=floppy.img bs=1024 count=1440 > /dev/null 2> /dev/null
-	/sbin/mke2fs -F floppy.img > /dev/null 2> /dev/null
-	./make_floppy.sh
+KERNEL_PATH = sys/kernel
+LIBC_PATH = libc
 
-kernel: libc force
-	make -C sys/kernel kernel.bin
+# Include kernel make file
+include $(KERNEL_PATH)/make.inc
 
-libc: force
-	make -C libc libc.a
+# Include libc make file
+include $(LIBC_PATH)/make.inc
 
-clean:
+floppy: kernel.bin
+	@dd if=/dev/zero of=floppy.img bs=1024 count=1440 > /dev/null 2> /dev/null
+	@/sbin/mke2fs -F floppy.img > /dev/null 2> /dev/null
+	@./make_floppy.sh
+
+clean: kernel_clean libc_clean
 	rm -f floppy.img
-	make -C sys/kernel clean
-	make -C libc clean
-
-force:
-	true
-
