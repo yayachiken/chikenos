@@ -19,5 +19,3 @@ loader:
  
 	cli # should never be reached
 	hlt
-
-

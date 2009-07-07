@@ -1,4 +1,7 @@
 int kmain() {
+	// initialisiere GDT
+	init_gdt();
+	
 	// String zum Ausgeben
 	char *hello = "Hello World";
  

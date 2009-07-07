@@ -6,7 +6,7 @@
 
 INCLUDEPATH = ../../libc/include
 
-OBJ = loader.o kmain.o console.o
+OBJ = loader.o kmain.o console.o gdt.o
 
 kernel.bin: $(OBJ)
 	ld -T ld.conf -o $@ $(OBJ) ../../libc/libc.a
