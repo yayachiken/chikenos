@@ -11,7 +11,7 @@ struct GDT_properties
 	char flags;
 };
 
-void make_gdt_entry(char *buf, struct GDT_properties prop)
+void gdt_make_entry(char *buf, struct GDT_properties prop)
 {
 	buf[0] = prop.limit & 0x000000FF;
 	buf[1] = prop.limit & 0x0000FF00;
@@ -23,7 +23,7 @@ void make_gdt_entry(char *buf, struct GDT_properties prop)
 	buf[7] = prop.base & 0xFF000000;
 }
 
-void init_gdt()
+void gdt_init()
 {
 	struct GDT_properties code, data;
 	
@@ -35,14 +35,14 @@ void init_gdt()
 	code.base = 0x00000000;
 	code.access = 0x9E;	// 10011110b
 	code.flags = 0xC;	// 1100b
-	make_gdt_entry((char*) &gdt[1], code);
+	gdt_make_entry((char*) &gdt[1], code);
 	
 	// Ring 0 data descriptor
 	data.limit = 0xFFFFF;
 	data.base = 0x00000000;
 	data.access = 0x92;	// 10010010b
 	data.flags = 0xC;	// 1100
-	make_gdt_entry((char*) &gdt[2], data);
+	gdt_make_entry((char*) &gdt[2], data);
 	
 	struct
 	{

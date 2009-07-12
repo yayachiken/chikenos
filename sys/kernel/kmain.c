@@ -1,6 +1,8 @@
 int kmain() {
-	// initialisiere GDT
-	init_gdt();
+	int_disable();
+	gdt_init();
+	idt_init();
+	int_enable();
 	
 	// String zum Ausgeben
 	char *hello = "Hello World";

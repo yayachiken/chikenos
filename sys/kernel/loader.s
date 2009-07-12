@@ -1,4 +1,5 @@
-.globl loader 
+.globl loader
+.globl int_handle
  
 .set FLAGS    , 0
 .set MAGIC    , 0x1BADB002       # Magic number for GRUB
@@ -19,3 +20,6 @@ loader:
  
 	cli # should never be reached
 	hlt
+
+int_handle:
+	iret
