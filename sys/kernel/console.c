@@ -52,13 +52,11 @@ void con_puts(const char *str)
 {
 	while(*str)
 	{
-		if(cursorpos > (short*) videomem + CON_ROWS*CON_COLS*2)
+		if(cursorpos > ((short*) (videomem + CON_ROWS*CON_COLS*2)))
 		{
 			// Reset cursorpos and scroll
-			cursorpos -= CON_COLS*2;
+			cursorpos -= CON_COLS;
 			con_scroll(1);
-
-			return;
 		}
 
 		*cursorpos = (((*str)) | 0x0700);

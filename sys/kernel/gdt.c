@@ -15,7 +15,7 @@ struct gdt_ptr
 {
 	unsigned short len;
 	unsigned int base;
-}__attribute__((packed));
+} __attribute__((packed));
 
 struct gdt_ptr gdtp;
 

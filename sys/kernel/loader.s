@@ -7,7 +7,7 @@
 .set FLAGS    , 0
 .set MAGIC    , 0x1BADB002       # Magic number for GRUB
 .set CHECKSUM , -(MAGIC + FLAGS) # Checksum
- 
+
 .section .text
 .align 4
 MultiBootHeader:
@@ -47,8 +47,9 @@ int_ecode_handle:
 test_int:
 	push $yay
 	call con_puts
+	add $4, %esp
 	call pic_eoi
 	iret
 	
 yay:
-	.ascii "Yay a chiken! \0"
+	.ascii "Yay a chiken! "
