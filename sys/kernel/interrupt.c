@@ -37,6 +37,8 @@ void idt_set_descriptor(unsigned char int_no, unsigned int offset, unsigned char
 }
 
 extern void int_handle();
+extern void int_ecode_handle();
+extern void test_int();
 
 void idt_init()
 {
@@ -46,9 +48,13 @@ void idt_init()
 	int i;
 	for(i=0; i < IDT_COUNT; i++)
 	{
-		// 0x8E == 10001110b 
-		idt_set_descriptor(i, (unsigned int) int_handle, 0x8E);
+		if(i == 8 || i == 17 || (i >= 10 && i <= 14))
+			idt_set_descriptor(i, (unsigned int) int_ecode_handle, 0x8E);
+		else
+			idt_set_descriptor(i, (unsigned int) int_handle, 0x8E);
 	}
+	
+	idt_set_descriptor(0xF0, (unsigned int) test_int, 0x8E);
 		
 	struct idt_ptr
 	{
