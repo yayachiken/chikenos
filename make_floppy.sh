@@ -1,29 +1,27 @@
-#!/bin/sh
+#!/bin/bash
 
-#
-# Mount floppy file
-#
-mkdir /tmp/floppy
-echo "Mounting floppy image, root required..."
-sudo mount -o loop floppy.img /tmp/floppy/
-cp kernel.bin /tmp/floppy/
-mkdir /tmp/floppy/grub
-
-#
-# Copy GRUB and ChikenOS menu.lst to floppy
-#
-cp /boot/grub/stage1 /tmp/floppy/grub
-cp /boot/grub/stage2 /tmp/floppy/grub
-cp menu.lst /tmp/floppy/grub/menu.lst
-sudo umount /tmp/floppy/
-rmdir /tmp/floppy
-
-#
-# Set up GRUB
-#
-/usr/sbin/grub --batch 2> /dev/null > /dev/null << EOF
-device (fd0) floppy.img
-root (fd0)
-setup (fd0)
+dd if=/dev/zero of=build/floppy.img bs=1024 count=1440 2> /dev/null
+# Create mtools config file
+cat << EOF > build/mtools.conf
+drive i:
+	file="build/floppy.img" cylinders=80 heads=2 sectors=18 filter
+EOF
+export MTOOLSRC=build/mtools.conf
+# Format disk
+mformat i:
+# Copy kernel.bin
+mcopy -D o build/kernel.bin i:/kernel.bin
+# Copy menu.lst
+mmd -D s i:/boot
+mmd -D s i:/boot/grub
+mcopy -D o build/menu.lst i:/boot/grub/menu.lst
+# Copy grub
+mcopy -D o /boot/grub/stage? i:/boot/grub/
+# Install grub
+grub --batch --no-floppy <<EOF 2> /dev/null > /dev/null
+	device (fd0) build/floppy.img
+	root (fd0)
+	setup (fd0)
 EOF
 
+rm -f build/mtools.conf

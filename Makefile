@@ -15,10 +15,8 @@ include $(KERNEL_PATH)/make.inc
 # Include libc make file
 include $(LIBC_PATH)/make.inc
 
-floppy: kernel.bin
-	@dd if=/dev/zero of=floppy.img bs=1024 count=1440 > /dev/null 2> /dev/null
-	@/sbin/mke2fs -F floppy.img > /dev/null 2> /dev/null
+floppy: build/kernel.bin
 	@./make_floppy.sh
 
 clean: kernel_clean libc_clean
-	rm -f floppy.img
+	rm -rf build/*

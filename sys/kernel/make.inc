@@ -12,7 +12,7 @@ KERNEL_OBJ = 	$(KERNEL_PATH)/loader.o \
 		$(KERNEL_PATH)/interrupt.o \
 		$(KERNEL_PATH)/pic.o
 
-kernel.bin: $(KERNEL_OBJ) libc.a
+build/kernel.bin: $(KERNEL_OBJ) libc.a
 	ld -m elf_i386 -T $(KERNEL_PATH)/ld.conf -o $@ $+
 
 $(KERNEL_PATH)/%.o: $(KERNEL_PATH)/%.c
