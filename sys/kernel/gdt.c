@@ -9,9 +9,9 @@ static unsigned long long int gdt[DESCR_COUNT];
 
 struct GDT_properties
 {
-	int limit;
-	int base;
-	char access;
+	unsigned int limit;
+	unsigned int base;
+	unsigned char access;
 	unsigned char flags;
 };
 

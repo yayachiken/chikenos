@@ -2,7 +2,7 @@
 
 void *memset(void *s, int c, size_t n)
 {
-	int i;
+	size_t i;
 	for(i = 0; i < n; i++)
 	{
 		*((char*)s+i) = (unsigned char)c;

@@ -1,0 +1,5 @@
+*.o
+sys/kernel/kernel.bin
+build/*
+libc.a
+
