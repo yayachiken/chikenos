@@ -1,5 +1,9 @@
+#include <string.h>
+
 // code descriptor + data descriptor + null descriptor
 #define DESCR_COUNT 3
+
+extern void gdt_flush();
 
 static unsigned long long int gdt[DESCR_COUNT];
 

@@ -1,3 +1,6 @@
+#include "init.h"
+#include "console.h"
+
 int kmain() {
 	int_disable();
 	gdt_init();

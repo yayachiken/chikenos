@@ -6,7 +6,7 @@
 #ifndef PORTS_H_INCLUDED
 #define PORTS_H_INCLUDED
 
-static inline io_wait()
+static inline void io_wait()
 {
 	asm("outb %%al, $0x80"::"a"(0));
 }
