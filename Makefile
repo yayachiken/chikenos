@@ -2,7 +2,7 @@
 # Makefile for ChikenOS
 #
 
-.PHONY: all clean
+.PHONY: all clean floppy test
 
 all: floppy
 
@@ -15,8 +15,11 @@ include $(KERNEL_PATH)/make.inc
 # Include libc make file
 include $(LIBC_PATH)/make.inc
 
-floppy: build/kernel.bin
+floppy: build/kernel.bin menu.lst
 	@./make_floppy.sh
 
+test: floppy
+	@./test_in_qemu.sh
+
 clean: kernel_clean libc_clean
-	rm -rf build/*
+	rm -rf build/* libc.a

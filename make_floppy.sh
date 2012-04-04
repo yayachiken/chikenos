@@ -14,7 +14,7 @@ mcopy -D o build/kernel.bin i:/kernel.bin
 # Copy menu.lst
 mmd -D s i:/boot
 mmd -D s i:/boot/grub
-mcopy -D o build/menu.lst i:/boot/grub/menu.lst
+mcopy -D o menu.lst i:/boot/grub/menu.lst
 # Copy grub
 mcopy -D o /boot/grub/stage? i:/boot/grub/
 # Install grub

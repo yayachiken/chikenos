@@ -3,7 +3,7 @@
 void *memset(void *s, int c, size_t n)
 {
 	int i;
-	for(i = 0; i <= n; i++)
+	for(i = 0; i < n; i++)
 	{
 		*((char*)s+i) = (unsigned char)c;
 	}
@@ -23,7 +23,7 @@ char *strcpy(char *dst, const char *src)
 void *memcpy(void *dst, const void *src, size_t n)
 {
 	size_t i;
-	for(i = 0; i <= n; i++)
+	for(i = 0; i < n; i++)
 	{
 		*((char*)dst+i) = *((const char*)src+i);
 	}

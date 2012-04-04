@@ -11,4 +11,4 @@ $(LIBC_PATH)/src/%.o: $(LIBC_PATH)/src/%.c
 	gcc -m32 -c -Wall -I$(LIBC_PATH)/include/ -o $@ $<
 
 libc_clean:
-	rm -f $(LIBC_PATH)/libc.a $(LIBC_PATH)/src/*.o
+	rm -f $(LIBC_PATH)/src/*.o

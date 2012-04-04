@@ -1,0 +1,3 @@
+title   ChikenOS Kernel
+kernel  /kernel.bin
+
