@@ -6,6 +6,9 @@
 
 all: floppy
 
+init:
+	@mkdir -p build
+
 KERNEL_PATH = sys
 LIBC_PATH = libc
 
@@ -17,11 +20,11 @@ include $(KERNEL_PATH)/make.inc
 # Include libc make file
 include $(LIBC_PATH)/make.inc
 
-floppy: build/kernel.bin menu.lst
+floppy: init build/kernel.bin menu.lst
 	@./make_floppy.sh
 
 test: floppy
 	@./test_in_qemu.sh
 
 clean: kernel_clean libc_clean
-	rm -rf build/* libc.a
+	rm -rf build libc.a

@@ -52,5 +52,5 @@ test_int:
 	iret
 	
 yay:
-	.ascii "Yay a chiken! "
+	.ascii "Yay a chiken! \0"
 
