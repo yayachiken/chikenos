@@ -12,12 +12,13 @@ void *memset(void *s, int c, size_t n)
 
 char *strcpy(char *dst, const char *src)
 {
+    char *dst_start = dst;
 	while(*src)
 	{
 		*dst++ = *src++;
 	}
 	*dst = 0;
-	return dst;
+	return dst_start;
 }
 
 void *memcpy(void *dst, const void *src, size_t n)
