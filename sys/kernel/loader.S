@@ -1,8 +1,8 @@
-.globl loader
-.globl gdt_flush
-.globl int_handle
-.globl int_ecode_handle
-.globl test_int
+.global loader
+.global gdt_flush
+.global int_handle
+.global int_ecode_handle
+.global test_int
  
 .set FLAGS    , 0
 .set MAGIC    , 0x1BADB002       # Magic number for GRUB

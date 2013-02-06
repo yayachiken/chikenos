@@ -19,8 +19,8 @@ build/kernel.bin: $(KERNEL_OBJ) libc.a
 $(KERNEL_SRC_PATH)/%.o: $(KERNEL_SRC_PATH)/%.c
 	@gcc -c -m32 -I$(LIBC_INCLUDE_PATH) -I$(KERNEL_INCLUDE_PATH) $(GLOBAL_GCC_OPTS) -o $@ $<
 
-$(KERNEL_SRC_PATH)/%.o: $(KERNEL_SRC_PATH)/%.s
-	@as --32 -o $@ $<
+$(KERNEL_SRC_PATH)/%.o: $(KERNEL_SRC_PATH)/%.S
+	@as --32 -march=i386 -o $@ $<
 
 kernel_clean:
 	rm -f $(KERNEL_SRC_PATH)/*.o $(KERNEL_SRC_PATH)/kernel.bin
