@@ -12,7 +12,8 @@ init:
 KERNEL_PATH = sys
 LIBC_PATH = libc
 
-GLOBAL_GCC_OPTS = -std=gnu11 -march=i386 -Wall -Wextra -pedantic
+CC = gcc
+GLOBAL_CC_OPTS = -std=gnu11 -march=i386 -Wall -Wextra -pedantic
 
 # Include kernel make file
 include $(KERNEL_PATH)/make.inc

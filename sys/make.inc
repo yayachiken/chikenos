@@ -17,7 +17,7 @@ build/kernel.bin: $(KERNEL_OBJ) libc.a
 	ld -m elf_i386 -T $(KERNEL_SRC_PATH)/ld.conf -o $@ $+
 
 $(KERNEL_SRC_PATH)/%.o: $(KERNEL_SRC_PATH)/%.c
-	@gcc -c -m32 -I$(LIBC_INCLUDE_PATH) -I$(KERNEL_INCLUDE_PATH) $(GLOBAL_GCC_OPTS) -o $@ $<
+	@$(CC) -c -m32 -I$(LIBC_INCLUDE_PATH) -I$(KERNEL_INCLUDE_PATH) $(GLOBAL_CC_OPTS) -o $@ $<
 
 $(KERNEL_SRC_PATH)/%.o: $(KERNEL_SRC_PATH)/%.S
 	@as --32 -march=i386 -o $@ $<
